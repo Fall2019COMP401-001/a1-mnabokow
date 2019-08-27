@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class A1Novice {
 
 	public static void main(String[] args) {
-		
 		// Use helper method to create array of Customer from user input
 		Customer[] customers = getCustomersFromUserInput();
 		
@@ -27,7 +26,7 @@ public class A1Novice {
 	 * name of item bought must be of type String
 	 * price of item bought must be of type double
 	 */
-	public static Customer[] getCustomersFromUserInput() {
+	private static Customer[] getCustomersFromUserInput() {
 		Scanner scan = new Scanner(System.in);
 
 		// read in count of customers to process
@@ -69,7 +68,7 @@ public class A1Novice {
 	/* printShoppingInfo() 
 	 * Prints shopping information from array of Customer
 	 */
-	public static void printShoppingInfo(Customer[] customers) {
+	private static void printShoppingInfo(Customer[] customers) {
 		String info = "";
 		
 		// Add customers information to info String
@@ -93,7 +92,7 @@ public class A1Novice {
 	}
 	
 	// Nested helper class
-	public static class Customer {
+	private static class Customer {
 		String firstName;
 		String lastName;
 		Item[] itemsBought;
@@ -106,7 +105,7 @@ public class A1Novice {
 	}
 	
 	// Nested helper class
-	public static class Item {
+	private static class Item {
 		int quantity;
 		String name;
 		double price;

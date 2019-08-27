@@ -5,12 +5,28 @@ import java.util.Scanner;
 public class A1Adept {
 
 	public static void main(String[] args) {
-		
+		// Use helper method to create array of Customer from user input
 		Customer[] customers = getCustomersFromUserInput();
+		
+		// Use helper method to print out shopping information from customers array
 		printShoppingInfo(customers);
 	}
 	
-	public static Customer[] getCustomersFromUserInput() {
+	/* getCustomersFromUserInpu() 
+	 * Returns array of Customer from User Input
+	 *
+	 * Output: array of Customer
+	 * 
+	 * Preconditions:
+	 * numberOfCustomers must be of type int
+	 * customer first names must be of type String
+	 * customer last names must be of type String
+	 * number of items bought by customer must be of type int
+	 * quantity of item bought must be of type int
+	 * name of item bought must be of type String
+	 * price of item bought must be of type double
+	 */
+	private static Customer[] getCustomersFromUserInput() {
 		Scanner scan = new Scanner(System.in);
 
 		// Read in count of items in store to process
@@ -72,7 +88,7 @@ public class A1Adept {
 	/* printShoppingInfo() 
 	 * Prints shopping information from array of Customer
 	 */
-	public static void printShoppingInfo(Customer[] customers) {
+	private static void printShoppingInfo(Customer[] customers) {
 		String biggestString = "Biggest: ";
 		String smallestString = "Smallest: ";
 		
@@ -121,34 +137,34 @@ public class A1Adept {
 		System.out.println(biggestString + "\n" + smallestString + "\n" + "Average: " + String.format("%.2f", average));
 	}
 	
-		// Nested helper class
-		public static class Customer {
-			String firstName;
-			String lastName;
-			Item[] itemsBought;
-			
-			public Customer(String firstName, String lastName, Item[] itemsBought) {
-				this.firstName = firstName;
-				this.lastName = lastName;
-				this.itemsBought = itemsBought;
-			}
+	// Nested helper class
+	private static class Customer {
+		String firstName;
+		String lastName;
+		Item[] itemsBought;
+		
+		public Customer(String firstName, String lastName, Item[] itemsBought) {
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.itemsBought = itemsBought;
+		}
+	}
+	
+	// Nested helper class
+	private static class Item {
+		int quantity;
+		String name;
+		double price;
+		
+		public Item(String name, double price) {
+			this.name = name;
+			this.price = price;
 		}
 		
-		// Nested helper class
-		public static class Item {
-			int quantity;
-			String name;
-			double price;
-			
-			public Item(String name, double price) {
-				this.name = name;
-				this.price = price;
-			}
-			
-			// Copy constructor
-			public Item(Item item) {
-				this.name = item.name;
-				this.price = item.price;
-			}
+		// Copy constructor
+		public Item(Item item) {
+			this.name = item.name;
+			this.price = item.price;
 		}
+	}
 }
