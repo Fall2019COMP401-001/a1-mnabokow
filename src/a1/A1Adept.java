@@ -100,14 +100,14 @@ public class A1Adept {
 			totalMoneySpent += total;
 			
 			// Check if total is new Max
-			if (total > max) {
+			if (total >= max) {
 				// Change biggestString accordingly
 				biggestString = "Biggest: " + customers[i].firstName + " " + customers[i].lastName + " (" + String.format("%.2f", total) + ")";
 				max = total;
 			}
 			
 			// Check if total is new Min
-			if (total < min) {
+			if (total <= min) {
 				// Change smallestString accordingly
 				smallestString = "Smallest: " + customers[i].firstName + " " + customers[i].lastName + " (" + String.format("%.2f", total) + ")";
 				min = total;
