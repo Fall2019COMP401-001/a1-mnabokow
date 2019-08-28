@@ -105,7 +105,7 @@ public class A1Jedi {
 				info += "\n";
 			}
 			if (items[i].totalOfCustomersBought == 0) {
-				info += "No customers bought: " + items[i].name;
+				info += "No customers bought " + items[i].name;
 			} else {
 				info += items[i].totalOfCustomersBought + " customers bought " + items[i].totalQuantityBought + " " + items[i].name;
 			}
