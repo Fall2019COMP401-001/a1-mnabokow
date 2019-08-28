@@ -57,8 +57,10 @@ public class A1Jedi {
 			String lastName = scan.next();
 			String fullName = firstName + lastName;
 			
+			// Create new Customer in customers array using firstName and lastName
 			customers[i] = new Customer(firstName, lastName);
 			
+			// Read in count of items bought by current customer
 			int numItemsBought = scan.nextInt();
 			
 			// Create array of Item to store items for current customer
@@ -70,11 +72,14 @@ public class A1Jedi {
 				String name = scan.next();
 				
 				// Find item from items array and add it to current customer's bought items in correct quantity
-				for (int k = 0; k < items.length; k++) {					
+				for (int k = 0; k < items.length; k++) {
 					if (items[k].name.equals(name)) {
 						itemsBought[j] = new Item(items[k]);
 						items[k].totalQuantityBought += quantity;
 						
+						/* If this is the first time the customer buys this item, add customer to the item's buyers
+						*  so that if the customer buys the item on two separate lines, it accounts for that
+						*/
 						if (items[k].buyers.indexOf(fullName) == -1) {
 							items[k].totalOfCustomersBought++;
 							items[k].buyers.add(fullName);
@@ -85,6 +90,7 @@ public class A1Jedi {
 				}
 			}
 			
+			// Set customers itemsBought 
 			customers[i].itemsBought = itemsBought;
 		}
 		
@@ -100,17 +106,22 @@ public class A1Jedi {
 	 */
 	public static void printShoppingInfo(Item[] items) {
 		String info = "";
+		// Loop through items list
 		for (int i = 0; i < items.length; i++) {
 			if (i != 0) {
 				info += "\n";
 			}
+			
+			// Account for 0 buyers on the current item
 			if (items[i].totalOfCustomersBought == 0) {
 				info += "No customers bought " + items[i].name;
 			} else {
+				// Build item information string
 				info += items[i].totalOfCustomersBought + " customers bought " + items[i].totalQuantityBought + " " + items[i].name;
 			}
 		}
 		
+		// Print information string
 		System.out.println(info);
 	}
 	
