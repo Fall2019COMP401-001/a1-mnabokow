@@ -2,6 +2,8 @@ package a1;
 
 import java.util.Scanner;
 
+import java.util.ArrayList;
+
 public class A1Jedi {
 
 	public static void main(String[] args) {
@@ -53,6 +55,9 @@ public class A1Jedi {
 		for (int i = 0; i < customers.length; i++) {
 			String firstName = scan.next();
 			String lastName = scan.next();
+			String fullName = firstName + lastName;
+			
+			customers[i] = new Customer(firstName, lastName);
 			
 			int numItemsBought = scan.nextInt();
 			
@@ -65,18 +70,22 @@ public class A1Jedi {
 				String name = scan.next();
 				
 				// Find item from items array and add it to current customer's bought items in correct quantity
-				for (Item item : items) {					
-					if (item.name.equals(name)) {
-						itemsBought[j] = new Item(item);
-						item.totalQuantityBought += quantity;
-						item.totalOfCustomersBought++;
+				for (int k = 0; k < items.length; k++) {					
+					if (items[k].name.equals(name)) {
+						itemsBought[j] = new Item(items[k]);
+						items[k].totalQuantityBought += quantity;
+						
+						if (items[k].buyers.indexOf(fullName) == -1) {
+							items[k].totalOfCustomersBought++;
+							items[k].buyers.add(fullName);
+						}
+						
 						break;
 					}
 				}
 			}
 			
-			// Create customer with processed information
-			customers[i] = new Customer(firstName, lastName, itemsBought);
+			customers[i].itemsBought = itemsBought;
 		}
 		
 		// All input parsed, so close scanner
@@ -109,12 +118,13 @@ public class A1Jedi {
 		public static class Customer {
 			String firstName;
 			String lastName;
+			String fullName;
 			Item[] itemsBought;
 			
-			public Customer(String firstName, String lastName, Item[] itemsBought) {
+			public Customer(String firstName, String lastName) {
 				this.firstName = firstName;
 				this.lastName = lastName;
-				this.itemsBought = itemsBought;
+				this.fullName = firstName + lastName;
 			}
 		}
 		
@@ -124,10 +134,12 @@ public class A1Jedi {
 			int totalOfCustomersBought;
 			String name;
 			double price;
+			ArrayList<String> buyers;
 			
 			public Item(String name, double price) {
 				this.name = name;
 				this.price = price;
+				buyers = new ArrayList<String>();
 			}
 			
 			// Copy constructor
